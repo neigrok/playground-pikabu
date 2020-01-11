@@ -21,8 +21,8 @@ if os.path.isdir('./stories') == True:
 else:
     os.makedirs('./stories')
 
-q = 0
 wrong_characters = ['–', '*', '—', '.', "'", '"', '/', '<', '>', '»', '«', '?', '!', '#', '-', "\\", ';', '&', "//", ':', ',', '|', '[', ']']
+q = 0
 for link in links:
     html_doc = urlopen(link).read()
     soup = BeautifulSoup(html_doc, 'lxml')
@@ -44,18 +44,10 @@ for link in links:
             selected_links.append(link)
     story = ''
 
-print(len(stories))
-print(len(titles))
-print(len(selected_links))
-
 x = 0
-n = 0
-e = 0
-
 while x < len(stories):
     isFile = os.path.isfile('stories/' + titles[x] + '.txt')
     if isFile == True:
-        e = e + 1
         x = x + 1
         continue
     elif isFile == False:
@@ -63,21 +55,15 @@ while x < len(stories):
         f.write(stories[x])
         f.close()
         x = x + 1
-        n = n + 1
-
-print('zapisano', n)
-print('ne zapisano', e)
-
-hz = 0
-z = 0
-z = 0
 
 isFile = os.path.isfile('linksxtitles.txt')
+
+i = 0
 if isFile == False:
     f =  open('linksxtitles.txt', 'w', encoding='utf-8')
-    while hz < len(selected_links):
-        f.write(titles[hz] +  ' — ' + selected_links[hz] + '\n')
-        hz = hz + 1
+    while i < len(selected_links):
+        f.write(titles[i] +  ' — ' + selected_links[i] + '\n')
+        i = i + 1
     f.close()
     f = open('linksxtitles.txt', 'r', encoding='utf-8')
     readed = list(f)
@@ -94,11 +80,9 @@ elif isFile == True:
     f = open('linksxtitles.txt', 'r', encoding='utf-8')
     readed = list(f)
     f.close()
-    print(len(readed))
-    while z < len(selected_links):
-        readed.append(titles[z] + ' — ' + selected_links[z] + '\n')
-        z = z + 1
-    print(len(readed))
+    while i < len(selected_links):
+        readed.append(titles[i] + ' — ' + selected_links[i] + '\n')
+        i = i + 1
     readed = set(readed)
     readed = list(readed)
     readed.sort()
