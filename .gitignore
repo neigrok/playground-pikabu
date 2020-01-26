@@ -1,0 +1,9 @@
+
+*.pyc
+*.rst
+lib/
+scripts/
+.pyvenv.cfg
+stories/
+include/
+linksxtitles.txt
